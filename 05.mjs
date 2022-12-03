@@ -11,8 +11,8 @@ for await (const line of fh.readLines()) {
 
   const letter = Array.from(line).find((letter, index, arr) =>
     index >= middle
-      ? arr.indexOf(letter) < middle
-      : arr.lastIndexOf(letter) >= middle
+      ? arr.lastIndexOf(letter, middle) !== -1
+      : arr.indexOf(letter, middle) !== -1
   );
   sumOfPriorities +=
     letter.charCodeAt() +
