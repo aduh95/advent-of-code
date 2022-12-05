@@ -10,7 +10,7 @@ for await (const line of fh.readLines()) {
   if (isDefiningOriginalCratesPosition) {
     if (line.includes("[")) {
       for (let i = 0; i < line.length; i += 4) {
-        if (line[i] === "[") (crates[i / 4] ??= []).unshift(line[i + 1]);
+        if (line[i] === "[") (crates[i / 4] ??= []).push(line[i + 1]);
       }
     } else {
       isDefiningOriginalCratesPosition = false;
@@ -20,15 +20,12 @@ for await (const line of fh.readLines()) {
     if (match !== null) {
       const [, numberOfCrates, origin, target] = match;
       const originStack = crates[Number(origin) - 1];
-      crates[Number(target) - 1].push(
-        ...originStack.splice(
-          originStack.length - numberOfCrates,
-          numberOfCrates
-        )
+      crates[Number(target) - 1].unshift(
+        ...originStack.splice(0, numberOfCrates)
       );
     }
   }
 }
-const cratesAtTheTop = crates.map((c) => c.at(-1)).join("");
+const cratesAtTheTop = crates.map((c) => c.at(0)).join("");
 
 console.log({ crates, cratesAtTheTop });
