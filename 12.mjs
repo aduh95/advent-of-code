@@ -19,4 +19,4 @@ while (bytesRead !== 0) {
   position += bytesRead;
 }
 
-console.log("No start-of-packet marker found");
+console.log("No start-of-message marker found");
