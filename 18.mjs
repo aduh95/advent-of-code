@@ -51,7 +51,7 @@ function moveTail(head, tail) {
     } else if (diffX === -2) {
       tail.x[0]--;
     }
-  } else if (Math.abs(diffX) === 2) {
+  } else if (Math.abs(diffX) === 2 || Math.abs(diffY) === 2) {
     if (diffX > 0) {
       tail.x[0]++;
     } else {
@@ -61,17 +61,6 @@ function moveTail(head, tail) {
       tail.y[0]++;
     } else {
       tail.y[0]--;
-    }
-  } else if (Math.abs(diffY) === 2) {
-    if (diffY > 0) {
-      tail.y[0]++;
-    } else {
-      tail.y[0]--;
-    }
-    if (diffX > 0) {
-      tail.x[0]++;
-    } else {
-      tail.x[0]--;
     }
   }
 }
