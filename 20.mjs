@@ -19,7 +19,7 @@ function draw() {
 
 for await (const line of fh.readLines()) {
   draw();
-  if (line.startsWith("addx ")) {
+  if (line !== "noop") {
     draw();
     x += Number(line.slice(5));
   }

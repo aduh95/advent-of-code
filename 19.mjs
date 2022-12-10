@@ -6,7 +6,7 @@ let sum = 0;
 let cycle = 1;
 let x = 1;
 
-function add() {
+function compute() {
   switch (cycle) {
     case 20:
     case 60:
@@ -15,19 +15,20 @@ function add() {
     case 180:
     case 220:
       sum += cycle * x;
+      break;
+
+    case 221:
+      console.log({ sum });
+      process.exit(0);
   }
 }
 
 for await (const line of fh.readLines()) {
-  if (line === "noop") {
-    cycle++;
-  } else {
-    cycle++;
-    add();
+  cycle++;
+  if (line !== "noop") {
+    compute();
     x += Number(line.slice(5));
     cycle++;
   }
-  add();
+  compute();
 }
-
-console.log({ sum });
